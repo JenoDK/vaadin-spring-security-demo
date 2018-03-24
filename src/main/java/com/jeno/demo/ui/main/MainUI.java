@@ -1,5 +1,6 @@
 package com.jeno.demo.ui.main;
 
+import com.jeno.demo.data.security.SecurityHolder;
 import com.jeno.demo.ui.main.views.accessdenied.AccessDeniedView;
 import com.jeno.demo.ui.main.views.error.ErrorView;
 import com.vaadin.annotations.Theme;
@@ -13,15 +14,13 @@ import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringUI
-@Theme("valo")
+@Theme("vaadin-spring-demo")
 public class MainUI extends UI {
 
-    private final SpringViewProvider viewProvider;
-
     @Autowired
-    public MainUI(SpringViewProvider viewProvider) {
-        this.viewProvider = viewProvider;
-    }
+    private SpringViewProvider viewProvider;
+    @Autowired
+    private SecurityHolder securityHolder;
 
     @Override
     protected void init(VaadinRequest request) {
@@ -29,7 +28,7 @@ public class MainUI extends UI {
         root.setSizeFull();
         setContent(root);
 
-        root.addComponent(new NavigationBar());
+        root.addComponent(new NavigationBar(securityHolder.getUser()));
 
         // View container, navigation results go in here
         final Panel viewContainer = new Panel();

@@ -21,7 +21,7 @@ import java.util.Arrays;
 
 @SpringUI(path = "/activateAccount")
 @Title("Reset Password")
-@Theme("valo")
+@Theme("vaadin-spring-demo")
 public class ActivateAccountUI extends RedirectUI {
 
 	@Autowired

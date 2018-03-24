@@ -41,7 +41,6 @@ public class ImageUploadWithPlaceholder extends VerticalLayout {
 					addComponent(imageLayout);
 				});
 
-		// TODO Define a style to hide error with style 'v-errorindicator'
 		upload = new Upload("Upload profile picture", receiver);
 		upload.addFailedListener((Upload.FailedListener) event -> {
 			removeComponent(imageLayout);
@@ -57,6 +56,7 @@ public class ImageUploadWithPlaceholder extends VerticalLayout {
 		upload.setButtonCaption("Choose image");
 		upload.setIcon(VaadinIcons.PICTURE);
 		upload.addSucceededListener(receiver);
+		upload.addStyleName("ignore-error-indicator");
 
 		Label infoLabel = new Label("Rectangular (or close to) will have the best results", ContentMode.HTML);
 		infoLabel.addStyleName(ValoTheme.LABEL_TINY);

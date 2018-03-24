@@ -1,15 +1,23 @@
 package com.jeno.demo.ui.main;
 
+import com.jeno.demo.model.User;
 import com.jeno.demo.ui.main.views.state.State;
-import com.vaadin.server.VaadinService;
+import com.vaadin.server.*;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.util.Comparator;
+import java.util.Optional;
 
 public class NavigationBar extends HorizontalLayout {
 
-	public NavigationBar() {
+	private final User user;
+
+	public NavigationBar(User user) {
+		this.user = user;
+
 		init();
 	}
 
@@ -28,12 +36,30 @@ public class NavigationBar extends HorizontalLayout {
 		// Add profile view to this, makes a bit more sense to not put it in menu bar
 		final CssLayout accountBar = new CssLayout();
 		accountBar.addStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
+
+		// Add profile button
 		accountBar.addComponent(createNavigationButton(State.PROFILE.getName(), State.PROFILE.getIdentifier()));
+
 		// Add logout button
 		Button logoutButton = new Button("Logout");
 		logoutButton.addStyleName(ValoTheme.BUTTON_SMALL);
 		logoutButton.addClickListener(this::logout);
 		accountBar.addComponent(logoutButton);
+
+		Resource resource;
+		if (user.getProfile_picture() != null) {
+			resource = new StreamResource(
+					() -> new ByteArrayInputStream(user.getProfile_picture()),
+					"prifle_picture.png");
+		} else {
+			resource = new ThemeResource("images/default_profile_picture.png");
+		}
+		Image profileImage = new Image("", resource);
+		profileImage.setWidth(70f, Unit.PIXELS);
+		profileImage.setHeight(70f, Unit.PIXELS);
+
+		accountBar.addComponent(profileImage);
+
 		addComponent(accountBar);
 
 		// Alignments

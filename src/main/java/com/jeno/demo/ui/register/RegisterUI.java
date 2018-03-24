@@ -22,7 +22,7 @@ import java.nio.file.Files;
 
 @SpringUI(path = "/register")
 @Title("Register")
-@Theme("valo")
+@Theme("vaadin-spring-demo")
 public class RegisterUI extends RedirectUI {
 
 	@Autowired

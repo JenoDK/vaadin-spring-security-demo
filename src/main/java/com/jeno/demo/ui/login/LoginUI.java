@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 
 @SpringUI(path = "/login")
 @Title("Login")
-@Theme("valo")
+@Theme("vaadin-spring-demo")
 public class LoginUI extends RedirectUI {
 
     @Autowired

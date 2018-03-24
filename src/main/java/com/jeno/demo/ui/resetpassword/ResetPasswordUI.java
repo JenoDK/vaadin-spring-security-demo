@@ -22,7 +22,7 @@ import java.util.Date;
 
 @SpringUI(path = "/resetPassword")
 @Title("Reset Password")
-@Theme("valo")
+@Theme("vaadin-spring-demo")
 public class ResetPasswordUI extends RedirectUI {
 
 	@Autowired

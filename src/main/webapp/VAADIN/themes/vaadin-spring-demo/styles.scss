@@ -1,0 +1,9 @@
+@import "../valo/valo.scss";
+@import "vaadin-spring-demo.scss";
+
+.vaadin-spring-demo {
+  @include valo;
+  @include vaadin-spring-demo;
+}
+
+

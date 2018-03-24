@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @SpringUI(path = "/forgotPassword")
 @Title("Forgot Password")
-@Theme("valo")
+@Theme("vaadin-spring-demo")
 public class ForgotPasswordUI extends RedirectUI {
 
 	@Autowired
